@@ -18,7 +18,7 @@ public class ParkingSpotController {
 		this.parkingSpotService = parkingSpotService;
 	}
 
-	@PostMapping(value = "/test") // TODO in future change with dto
+	@PostMapping(value = "/availability")
 	public void updateParkingSpotAvailability(@RequestBody ParkingSpot sensorData) {
 		parkingSpotService.updateParkingSpotAvailability(sensorData);
 	}

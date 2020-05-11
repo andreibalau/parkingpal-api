@@ -18,5 +18,5 @@ public class ParkingSpot {
 	private Long id;
 	private Double latitude;
 	private Double longitude;
-	private Boolean available;
+	private Boolean availability;
 }

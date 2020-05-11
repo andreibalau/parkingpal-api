@@ -17,6 +17,14 @@ public class ParkingSpotService {
 	}
 
 	public void updateParkingSpotAvailability(ParkingSpot sensorData) {
-		parkingSpotRepository.save(sensorData);
+		ParkingSpot parkingSpot = parkingSpotRepository.findByLatitudeAndLongitude(sensorData.getLatitude(),
+				sensorData.getLongitude());
+		if (parkingSpot != null) {
+			parkingSpot.setAvailability(sensorData.getAvailability());
+			parkingSpotRepository.save(parkingSpot);
+		} else {
+			parkingSpotRepository.save(sensorData);
+		}
+
 	}
 }
