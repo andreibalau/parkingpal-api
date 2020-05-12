@@ -1,6 +1,7 @@
 package com.core.parkingpalapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class ParkingSpotController {
 		this.parkingSpotService = parkingSpotService;
 	}
 
-	@PostMapping(value = "/availability")
+	@PostMapping(value = "/availability", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateParkingSpotAvailability(@RequestBody ParkingSpot sensorData) {
 		parkingSpotService.updateParkingSpotAvailability(sensorData);
 	}

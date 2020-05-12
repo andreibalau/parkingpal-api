@@ -8,6 +8,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		utilMapping(registry, "/availability");
+		utilMapping(registry, "/h2-console");
 
 	}
 
