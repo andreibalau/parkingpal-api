@@ -6,8 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.core.parkingpalapi.dto.ParkingSpotRequestDto;
-import com.core.parkingpalapi.dto.ParkingSpotResponseDto;
+import com.core.parkingpalapi.dto.ParkingSpotDto;
 import com.core.parkingpalapi.model.ParkingSpot;
 import com.core.parkingpalapi.repository.ParkingSpotRepository;
 
@@ -21,7 +20,7 @@ public class ParkingSpotService {
 		this.parkingSpotRepository = parkingSpotRepository;
 	}
 
-	public void updateParkingSpotAvailability(ParkingSpotRequestDto sensorData) {
+	public void updateParkingSpotAvailability(ParkingSpotDto sensorData) {
 		ParkingSpot parkingSpot = parkingSpotRepository.findByLatitudeAndLongitude(sensorData.getLatitude(),
 				sensorData.getLongitude());
 		if (parkingSpot != null) {
@@ -37,9 +36,10 @@ public class ParkingSpotService {
 
 	}
 
-	public List<ParkingSpotResponseDto> getAllAvailableSpots() {
-		return parkingSpotRepository.findAll().stream().filter(spot -> spot.getAvailability().equals(true))
-				.map(spot -> new ParkingSpotResponseDto(spot.getLatitude(), spot.getLongitude()))
+	public List<ParkingSpotDto> getAllAvailableSpots() {
+		List<ParkingSpot> parkingSpots = parkingSpotRepository.findAll();
+		return parkingSpots.stream()
+				.map(spot -> new ParkingSpotDto(spot.getLatitude(), spot.getLongitude(), spot.getAvailability()))
 				.collect(Collectors.toList());
 	}
 }

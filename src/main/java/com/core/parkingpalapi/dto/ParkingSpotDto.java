@@ -7,7 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ParkingSpotResponseDto {
+public class ParkingSpotDto {
 	private Double latitude;
 	private Double longitude;
+	private Boolean availability;
 }
